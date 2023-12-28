@@ -1,30 +1,39 @@
+import {
+  useQuery
+} from '@tanstack/react-query'
 import Product from "./Product";
-import { useEffect, useState } from "react";
+import "./Products.css"
 
 function Products() {
-  const [products, setProducts] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('https://fakestoreapi.com/products/');
-        const data = await response.json();
-        console.log(data);
-        setProducts(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
+  const fetchProducts = async () => {
+    const response = await fetch('https://fakestoreapi.com/products/');
+    const products = await response.json();
+    return products;
+  };
 
-    fetchData();
-  }, []);
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['products'],
+    queryFn: fetchProducts
+  });
+
+  if (isLoading) return <div className="loading-container">
+                          <div className="newtons-cradle">
+                            <div className="newtons-cradle__dot"></div>
+                            <div className="newtons-cradle__dot"></div>
+                            <div className="newtons-cradle__dot"></div>
+                            <div className="newtons-cradle__dot"></div>
+                          </div>
+                        </div>
+  if (error) return <div>Error al cargar productos: {error.message}</div>;
 
   return (
     <div className="container mt-5 mb-5">
       <div className="row row-cols-1 row-cols-md-3 g-4">
-        {products.map(product => (
+        {data.map(product => (
           <div key={product.id} className="col">
             <Product
+              id={product.id}
               title={product.title}
               description={product.description}
               price={product.price}
