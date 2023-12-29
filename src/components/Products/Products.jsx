@@ -40,6 +40,7 @@ function Products() {
               category={product.category}
               image={product.image}
               rating={product.rating}
+              showButton={true}
             />
           </div>
         ))}
