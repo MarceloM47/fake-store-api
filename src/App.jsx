@@ -6,6 +6,7 @@ import PrivateRoute from './components/PrivateRoute.jsx';
 import Navbar from './components/Navbar.jsx'
 import LoginPage from './pages/LoginPage.jsx';
 import ProductPage from './pages/HomePage.jsx';
+import ShowProductPage from './pages/ShowProductPage.jsx'
 
 function App() {
   const queryClient = new QueryClient();
@@ -18,6 +19,7 @@ function App() {
           <Route element={<PrivateRoute />}>
             <Route path="/" element={<ProductPage />} />
           </Route>
+        <Route path="/products/:productId" element={<ShowProductPage />} />
         <Route path="/login" element={ <LoginPage/> }/>
       </Routes>
     </QueryClientProvider>
