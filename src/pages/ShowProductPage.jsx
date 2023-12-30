@@ -28,7 +28,7 @@ function ShowProduct() {
       if (error) return <div>Error al cargar el producto: {error.message}</div>;
 
   return (
-    <div key={data.id} style={{height: "90%", paddingLeft: "5%", paddingRight: "5%"}} className="d-flex justify-content-center align-items-center">
+    <div key={data.id} style={{height: "90vh", width: "100%", display:"flex", alignItems:"center", justifyContent: "center"}}>
           <Product
 
             id={data.id}
@@ -39,6 +39,7 @@ function ShowProduct() {
             image={data.image}
             rating={data.rating}
             showButton={false}
+            onlyProduct={true}
           />
     </div>
   )

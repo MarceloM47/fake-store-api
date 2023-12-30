@@ -17,6 +17,14 @@ function Products() {
     queryFn: fetchProducts
   });
 
+  const truncateDescription = (description) => {
+    if (description.length > 50) {
+      return description.substring(0, 50) + "...";
+    } else {
+      return description;
+    }
+  };
+
   if (isLoading) return <div className="loading-container">
                           <div className="newtons-cradle">
                             <div className="newtons-cradle__dot"></div>
@@ -28,23 +36,21 @@ function Products() {
   if (error) return <div>Error al cargar productos: {error.message}</div>;
 
   return (
-    <div className="container mt-5 mb-5">
-      <div className="row row-cols-1 row-cols-md-3 g-4">
+    <div className="products-container">
         {data.map(product => (
-          <div key={product.id} className="col">
+          <div key={product.id}>
             <Product
               id={product.id}
               title={product.title}
-              description={product.description}
+              description={truncateDescription(product.description)}
               price={product.price}
-              category={product.category}
               image={product.image}
               rating={product.rating}
               showButton={true}
+              onlyProduct={false}
             />
           </div>
         ))}
-      </div>
     </div>
   );
 }
