@@ -69,7 +69,7 @@ function Login() {
         />
       </div>
       <button type="submit" className="btn btn-primary">
-        Submit
+        Iniciar sesión
       </button>
     </form>
   );

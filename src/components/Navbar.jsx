@@ -23,6 +23,14 @@ function Navbar() {
                 {
                   token ? (
                     <li className="nav-item">
+                      <Link to={'/crear'} className="nav-link active" aria-current="page">Crear</Link>
+                    </li>
+                  ) : null
+                }
+
+                {
+                  token ? (
+                    <li className="nav-item">
                       <a className="nav-link active" onClick={() => {
                         logout()
                         navigate('/login')

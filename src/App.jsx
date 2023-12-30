@@ -7,6 +7,7 @@ import Navbar from './components/Navbar.jsx'
 import LoginPage from './pages/LoginPage.jsx';
 import ProductPage from './pages/HomePage.jsx';
 import ShowProductPage from './pages/ShowProductPage.jsx'
+import CreateProductPage from './pages/CreateProductPage.jsx';
 
 function App() {
   const queryClient = new QueryClient();
@@ -17,8 +18,10 @@ function App() {
       <Navbar/>
       <Routes>
           <Route element={<PrivateRoute />}>
-            <Route path="/" element={<ProductPage />} />
+            <Route path="/crear" element={<CreateProductPage />} />
           </Route>
+        
+        <Route path="/" element={<ProductPage />} />
         <Route path="/products/:productId" element={<ShowProductPage />} />
         <Route path="/login" element={ <LoginPage/> }/>
       </Routes>
